@@ -16,7 +16,7 @@ In order to create a cluster we need to tell *MiniKube* what driver to use. We c
 minikube start --driver docker
 ```
 
-![Minikube start](./images-for-readme/minikube_start.png)
+![Minikube start](./images-for-readme/minikube_start.PNG)
 
 ## MYSQL
 
@@ -31,7 +31,7 @@ In this folder we have 3 configuration files (.yaml) that relate to MYSQL:
 In this folder we have onlu one configuration file ***employees.yaml*** which have the Deployment and Service.<br>
 In this part we are using the image of the employees project (the project is in my github and the image is in docker hub) - we can see that we give the name of the image in the *containers* section under the *Deployment* component.<br>
 We are exposing the port *30000* using the *nodePort* field:
-![Minikube exposing employees](./images-for-readme/exposing_employee_port.png)
+![Minikube exposing employees](./images-for-readme/exposing_employee_port.PNG)
 
 ## Deploy recources in MiniKube cluster
 In order to do it we will use the *KubeCTL*.<br>
@@ -44,19 +44,19 @@ kubectl apply -f mysql-config.yaml
 kubectl apply -f mysql-secret.yaml
 kubectl apply -f mysql.yaml
 ```
-![Minikube deploy MYSQL](./images-for-readme/minikube_deploy_mysql.png)
+![Minikube deploy MYSQL](./images-for-readme/minikube_deploy_mysql.PNG)
 
 In the *Employees* folder:
 ```ssh
 kubectl apply -f employees.yaml
 ```
-![Minikube deploy Employees](./images-for-readme/minikube_deploy_employees.png)
+![Minikube deploy Employees](./images-for-readme/minikube_deploy_employees.PNG)
 
 We can see the components using the following command
 ```ssh
 kubectl get all
 ```
-![KubeCTL get all](./images-for-readme/get_all.png)
+![KubeCTL get all](./images-for-readme/get_all.PNG)
 
 * We can see our pods, we expect to see 4 pods - 3 of the *Employees* and one of *MYSQL* - the first section.
 * Then we can see the services, 2 services that we created and one kebernetes service.
