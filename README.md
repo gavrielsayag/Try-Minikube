@@ -30,7 +30,7 @@ In this folder we have 3 configuration files (.yaml) that relate to MYSQL:
 
 In this folder we have onlu one configuration file ***employees.yaml*** which have the Deployment and Service.<br>
 In this part we are using the image of the employees project (the project is in my github and the image is in docker hub) - we can see that we give the name of the image in the *containers* section under the *Deployment* component.<br>
-We are exposing the port *30000* using the *nodePort* field:
+We are exposing the port *30000* using the *nodePort* field:<br>
 ![Minikube exposing employees](./images-for-readme/exposing_employee_port.PNG)
 
 ## Deploy recources in MiniKube cluster
