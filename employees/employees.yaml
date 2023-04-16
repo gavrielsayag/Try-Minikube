@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employees-deployment
+  labels:
+    app: employees
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+      - name: employeesdb
+        image: gavriel101/employees:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MYSQL_USERNAME
+          valueFrom: 
+            configMapKeyRef:
+              name: mysql-config
+              key: mysql-username
+        - name: MYSQL_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
+        - name: MYSQL_DB
+          valueFrom: 
+            configMapKeyRef:
+              name: mysql-config
+              key: mysql-database
+        - name: MYSQL_HOST
+          valueFrom: 
+            configMapKeyRef:
+              name: mysql-config
+              key: mysql-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employees-service
+spec:
+  type: NodePort
+  selector:
+    app: employees
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30000
